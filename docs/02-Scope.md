@@ -1,2 +1,0 @@
--mininium scope feature():
-- Users are able to upload,download,edit document on the centralised system
