@@ -1,6 +1,6 @@
 Business problem (plain English): 
 - What is happening now and why it’s inefficient/risky
-The business is using multipe platform for each department so sendind data between these system is wasting time and is inefficent. Also they have no data governance policies so their data isn't accurate or up to date which willl create wrong reports/insights so their decision will be incorrect.
+- The business is using multipe platform for each department so sendind data between these system is wasting time and is inefficent. Also they have no data governance policies so their data isn't accurate or up to date which willl create wrong reports/insights so their decision will be incorrect.
 Intended users:
 
 - List each user group and what they need to do
