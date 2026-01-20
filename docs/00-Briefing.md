@@ -15,7 +15,6 @@ Current tools / current process:
 - Spreadsheets/shared docs/shared folders(drives):
 -accounting software:
 -Basic cloud storage tools 
-- Any other tools mentioned:
 
 Problems described by the employer:
 1.no centralised platform/system
@@ -28,7 +27,6 @@ Problems described by the employer:
 Who will use the system?
 - User type 1:staff 
 - User type 2:admin
-- User type 3:
 
 Constraints / non-negotiables:
 - Data sensitivity (Finance/HR):
