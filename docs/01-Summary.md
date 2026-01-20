@@ -2,7 +2,12 @@ Business problem (plain English):
 - What is happening now and why it’s inefficient/risky
 The business is using multipe platform for each department so sendind data between these system is wasting time and is inefficent. Also they have no data governance policies so their data isn't accurate or up to date which willl create wrong reports/insights so their decision will be incorrect.
 Intended users:
+
 - List each user group and what they need to do
+- manager - The manager will be able to see the current team's purpose and the employees who are on the the team, They can manage user authorisation/ data control authorisation 
+- team leader - The team lead will be able to see team members and whay they have done, manage user controll 
+- team member - The team member will be able to upload and edit documents/data, see updates to documents/data 
+  
 
 Project goals:
 •	A central system 
