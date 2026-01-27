@@ -1,5 +1,6 @@
 **Non functional requiments**
 <br>
+human actions/non system acts
 - Permission list - as a manager, I can see permissions of each user/control their permission on a list/page so I can manage/update when they are demoted/promoted and just see current accessible for each staff member.
 
 
