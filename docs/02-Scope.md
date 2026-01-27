@@ -1,4 +1,6 @@
 **Inscope**
+<br>
+These features will be included with the mvp(mininium viable product) for this centralised system
 - User login(manager,user)
 - dashboard/manager dashboard
 - work status
@@ -8,6 +10,8 @@
 
 
 **out of scope**
+<br>
+These feature can be developed and implemented on later  on 
 - Task/project history 
 - sentive employee storage(HR)
 - Intregration to third party
