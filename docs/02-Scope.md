@@ -1,4 +1,4 @@
-- **Inscope**
+**Inscope**
 - User login(manager,user)
 - dashboard/manager dashboard
 - work status
@@ -7,7 +7,7 @@
 
 
 
-- **out of scope**
+**out of scope**
 - Task/project history 
 - sentive employee storage(HR)
 - Intregration to third party
