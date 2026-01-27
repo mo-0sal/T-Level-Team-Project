@@ -7,4 +7,6 @@
 - Task history - As a manager, I can see the prevously compeleted task/project so I know what have been done so I don't double complete a task and taste money and time
 - Permission histoty - as a manager, I can see permissions of each user/control their permission on a list/page so I can manage/update when they are demoted/promoted and just see current accessible for each staff member.
 - User login - As a staff/manager - I can see login in with a spefic login details to the system safely so I can login into the system.
-- Intregration to third party - As a manager/staff member, I can access/use third party system/tools within the system to enchance and improve productivity and performance of the system so I can use useful third party tools/system. 
+- Intregration to third party - As a manager/staff member, I can access/use third party system/tools within the system to enchance and improve productivity and performance of the system so I can use useful third party tools/system.
+- Payroll system - As a manager, The system will give the staff member their payroll on a regular intervols with their salary So the finical team is reduced responsibilities and handling sentive information.
+- Sentive employee storage(HR) - As a manager, I can see sentive employee information and is retricted to only allowed users so allowed user are able to see this information is easily to be see. 
