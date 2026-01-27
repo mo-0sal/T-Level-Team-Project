@@ -1,6 +1,13 @@
 **User story**
 <br>
+**mininium viable product**
+- User login - As a staff/manager - I can see login in with a spefic login details to the system safely so I can login into the system.
+- Filter/search - As a staff member or manager, I want to able to filter out unnecessary task which don't involve me or as a manager to filter out task to see task I need to see so I can.
+- Dash board - As a Manager/staff member, I want a dashboard to show current/completed task or project, who has completed the task/project, who is currently assigned to a task/project, see a deadline for task,project so I can manage these task/project or see my task I need to complete.
+- Task assigned - As a staff member, when I log in, I can see my task in a list/page in a deciated area with deadline next to my assign task and status so I'm able to see my task wihtout filter/search and save time.
 Work story - As a staff member, I want status window to show the current state of a task so these task so as a staff memberI can see if a task is completed or needs to be work too.
+- Task/project creation/remove - As a manager, I need to be able to create a task/remove a task with certain details(deadline,assign,etc) so I can manage new and old task/projet for staff.
+
 <br>
 Dash board - As a Manager/staff member, I want a dashboard to show current/completed task or project, who has completed the task/project, who is currently assigned to a task/project, see a deadline for task,project so I can manage these task/project or see my task I need to complete.
 <br>
