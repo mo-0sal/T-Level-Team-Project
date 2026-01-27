@@ -1,10 +1,10 @@
 -**Timeline** 
 - Phase 1 - Analysis of project
-- Requiments of system, Success critria, some understanding
+- Requiments of system, Success critria, some basic qunderstanding
 - Phase 2 - Design system
 -  Use-cases, user stories, DFD, ERD, data dictionary, wireframes, architecture  
 - Phase 3 – Build:
-- Implement main features in logical order 
+- Implement main features in logical order, coding system  
 - Phase 4 – Test:
 - Test plan + test cases + fix log 
 - Phase 5 – comfirmation:
