@@ -1,8 +1,9 @@
 **Non functional requiments**
 <br>
 human actions/non system acts
-- Permission list - as a manager, I can see permissions of each user/control their permission on a list/page so I can manage/update when they are demoted/promoted and just see current accessible for each staff member.
-
+- Permission list - a manager should be able to set persission for each user and update them to different persission levels
+- login - a staff/manager can enter details to enter their account on the system
+- search - a staff/manager enter detailsbe to be able to search for task/group/project/task, allows user to enter search details for what they want to see 
 
 
 Dash board - As a Manager/staff member, I want a dashboard to show current/completed task or project, who has completed the task/project, who is currently assigned to a task/project, see a deadline for task,project so I can manage these task/project or see my task I need to complete.
