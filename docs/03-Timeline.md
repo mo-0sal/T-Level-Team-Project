@@ -1,4 +1,6 @@
--**Timeline** 
+**Timeline** 
+<br>
+This shows the plan on how we will develop and produce the system in phrases
 - Phase 1 - Analysis of project
 - Requiments of system, Success critria, some basic qunderstanding
 - Phase 2 - Design system
