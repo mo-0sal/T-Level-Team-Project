@@ -12,4 +12,5 @@ human actions/non system acts
 - Task/project creation/remove - As a manager, I need to be able to create a task/remove a task with certain details(deadline,assign,etc) so I can manage new and old task/projet for staff.
 - Task history - As a manager, I can see the prevously compeleted task/project so I know what have been done so I don't double complete a task and taste money and time
 - Task/project creation/remove - As a manager, I need to be able to create a task/remove a task with certain details(deadline,assign,etc) so I can manage new and old task/projet for staff.
+- Sentive employee storage(HR) - As a manager, I can see sentive employee information and is retricted to only allowed users so allowed user are able to see this information is easily to be see. 
 
