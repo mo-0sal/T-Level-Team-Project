@@ -7,10 +7,10 @@ human actions/non system acts
 - page load time - Each page on the system should be load within a 2-second maximum to help a better user experence. 
 - Gdpr complince - Since the system may contain sentive employee data and inportant client data so they need to follow the Gdpr laws to avoid fines and issues.
 - encryption - The system should have encryption protcals to ensure safeguardiing clients and user information.
-- Accessiblity - On the system, they should include accessiblity feature for all types of staff members to ensure everyone can use the system(they need to follow the wcag(Web content accessibilty guidelines))
+- Accessiblity - On the system, they should include accessiblity feature for all types of staff members to ensure everyone can use the system, they need to follow the wcag(Web content accessibilty guidelines). 
 - Dashboard - There should be a dashboard with key information so as manager and staff member I can see the key information wihtout the the unneeded(The dashboard may be differnt for staff and manager as they are differnt roles).
 - Task/project creation/remove - As a manager, I need to be able to create a task/remove a task with certain details(deadline,assign,etc) so I can manage new and old task/projet for staff.
-- Task history - As a manager, I can see the prevously compeleted task/project so I know what have been done so I don't double complete a task and taste money and time
-- Task/project creation/remove - As a manager, I need to be able to create a task/remove a task with certain details(deadline,assign,etc) so I can manage new and old task/projet for staff.
+- Task history/edit history - As a manager, I can see the prevously compeleted task/project/edits made to document so I know what have been done so I don't double complete a task and taste money and time
+- Ability to create,upload,edit,remove document/task/project - As a manager and staff user, I need to be able to create/edit/remove a document/task/remove with details(deadline,assign,etc for task)(any type of document details) so I can manage new and old document/task/projet for staff.
 - Sentive employee storage(HR) - As a manager, I can see sentive employee information and is retricted to only allowed users so allowed user are able to see this information is easily to be see. 
 
