@@ -1,31 +1,46 @@
+**Moscow**
+- must have
+Dashboard - There should be a dashboard with key information so as manager and staff member I can see the key information wihtout the the unneeded(The dashboard may be differnt for staff and manager as they are differnt roles).
+<br>
+encryption - The system should have encryption protcals to ensure safeguardiing clients and user information.
+<br>
+Ability to create,upload,edit,remove document/task/project - As a manager and staff user, I need to be able to create/edit/remove a document/task/remove with details(deadline,assign,etc for task)(any type of document details) so I can manage new and old document/task/projet for staff.
+<br> 
+login - a staff/manager can enter details to enter their account on the system
+<br>
+Authenication - The system will allow users enter to the system on a login based function.
+<br>
 
 
+- should have
+Accessiblity - On the system, they should include accessiblity feature for all types of staff members to ensure everyone can use the system, they need to follow the wcag(Web content accessibilty guidelines).
+<br>
+Gdpr complince - Since the system may contain sentive employee data and inportant client data so they need to follow the Gdpr laws to avoid fines and issues.
+<br>
+Task history/edit history - As a manager, I can see the prevously compeleted task/project/edits made to document so I know what have been done so I don't double complete a task and taste money and time
+<br>
+Accessiblity - On the system, they should include accessiblity feature for all types of staff members to ensure everyone can use the system, they need to follow the wcag(Web content accessibilty guidelines).
+<br>
+page load time - Each page on the system should be load within a 2-second maximum to help a better user experence.
+<br>
+search - a staff/manager can enter details to be able to search for task/group/project/task, allows user to enter search details for what they want to see
+<br>
+Permission list - a manager should be able to set persission for each user and update them to different persission levels
+<br>
+scure Storage - stores tasks,task history, sentive employee history on safe storage device, work documents
+<br>
+system must store user profiles/create user profile - The system has to hold all manager and staff users accounts to allow new users to join the system and manage all user accounts.
 
-
-
-
-- Task assigned - As a staff member, when I log in, I can see my task in a list/page in a deciated area with deadline next to my assign task and status so I'm able to see my task wihtout filter/search and save time.
-Work story - As a staff member, I want status window to show the current state of a task so these task so as a staff memberI can see if a task is completed or needs to be work too.
-- Task/project creation/remove - As a manager, I need to be able to create a task/remove a task with certain details(deadline,assign,etc) so I can manage new and old task/projet for staff.
-
-<br>
-Dash board - As a Manager/staff member, I want a dashboard to show current/completed task or project, who has completed the task/project, who is currently assigned to a task/project, see a deadline for task,project so I can manage these task/project or see my task I need to complete.
-<br>
-Filter/search - As a staff member or manager, I want to able to filter out unnecessary task which don't involve me or as a manager to filter out task to see task I need to see so I can.
-<br>
-Task/project creation/remove - As a manager, I need to be able to create a task/remove a task with certain details(deadline,assign,etc) so I can manage new and old task/projet for staff.
-<br>
-Task assigned - As a staff member, when I log in, I can see my task in a list/page in a deciated area with deadline next to my assign task and status so I'm able to see my task wihtout filter/search and save time.
-<br>
-Task history - As a manager, I can see the prevously compeleted task/project so I know what have been done so I don't double complete a task and taste money and time
-<br>
-Permission histoty - as a manager, I can see permissions of each user/control their permission on a list/page so I can manage/update when they are demoted/promoted and just see current accessible for each staff member.
-<br>
-User login - As a staff/manager - I can see login in with a spefic login details to the system safely so I can login into the system.
-<br>
-Intregration to third party - As a manager/staff member, I can access/use third party system/tools within the system to enchance and improve productivity and performance of the system so I can use useful third party tools/system.
+- could have
+Sentive employee storage(HR) - As a manager, I can see sentive employee information and is retricted to only allowed users so allowed user are able to see this information is easily to be see.
 <br>
 Payroll system - As a manager, The system will give the staff member their payroll on a regular intervols with their salary So the finical team is reduced responsibilities and handling sentive information.
 <br>
-Sentive employee storage(HR) - As a manager, I can see sentive employee information and is retricted to only allowed users so allowed user are able to see this information is easily to be see. 
+Intregration to third party - As a manager/staff member, I can access/use third party system/tools within the system to enchance and improve productivity and performance of the system so I can use useful third party tools/system.
 <br>
+Compatibility - The system should be be able to differentate and resize/calbrate based on the type,size of the user's device.
+<br>
+
+
+
+- won't have 
