@@ -1,5 +1,7 @@
 **Moscow**
-- must have
+<br>
+**Must have**
+<br>
 Dashboard - There should be a dashboard with key information so as manager and staff member I can see the key information wihtout the the unneeded(The dashboard may be differnt for staff and manager as they are differnt roles).
 <br>
 encryption - The system should have encryption protcals to ensure safeguardiing clients and user information.
@@ -11,8 +13,8 @@ login - a staff/manager can enter details to enter their account on the system
 Authenication - The system will allow users enter to the system on a login based function.
 <br>
 
-
-- should have
+**Should have**
+<br>
 Accessiblity - On the system, they should include accessiblity feature for all types of staff members to ensure everyone can use the system, they need to follow the wcag(Web content accessibilty guidelines).
 <br>
 Gdpr complince - Since the system may contain sentive employee data and inportant client data so they need to follow the Gdpr laws to avoid fines and issues.
@@ -31,7 +33,8 @@ scure Storage - stores tasks,task history, sentive employee history on safe stor
 <br>
 system must store user profiles/create user profile - The system has to hold all manager and staff users accounts to allow new users to join the system and manage all user accounts.
 
-- could have
+**Could have**
+<br>
 Sentive employee storage(HR) - As a manager, I can see sentive employee information and is retricted to only allowed users so allowed user are able to see this information is easily to be see.
 <br>
 Payroll system - As a manager, The system will give the staff member their payroll on a regular intervols with their salary So the finical team is reduced responsibilities and handling sentive information.
@@ -39,8 +42,5 @@ Payroll system - As a manager, The system will give the staff member their payro
 Intregration to third party - As a manager/staff member, I can access/use third party system/tools within the system to enchance and improve productivity and performance of the system so I can use useful third party tools/system.
 <br>
 Compatibility - The system should be be able to differentate and resize/calbrate based on the type,size of the user's device.
-<br>
 
-
-
-- won't have 
+**Won't have**
