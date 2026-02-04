@@ -1,5 +1,9 @@
 **User story**
 <br>
+Proposition
+<br>
+Below I have outlined what I would like to implement into the site if possible - some
+of these features may have different access reqirements depending on the user :
 **mininium viable product**
 - User login - As a staff/manager, I can login into the system with my login details so I can use the system. 
 - Filter/search - As a staff member or manager, I can filter out unnecessary documents/task so I'm able to focus on my needed documents/task. 
