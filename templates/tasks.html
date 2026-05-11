@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Tasks{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div class="wrapper">
+        <h1 class="page-title">
+            {% if session.role == 'staff' %}My Tasks{% else %}All Tasks{% endif %}
+        </h1>
+    </div>
+</div>
+
+<div class="wrapper section-gap">
+
+    <!-- Filters -->
+    <div class="filter-bar">
+        <form method="get" class="filter-form">
+            <div class="filter-group">
+                <label class="filter-label">Status</label>
+                <div class="filter-btns">
+                    {% for s in [('all','All'), ('pending','Pending'), ('in_progress','In Progress'), ('completed','Completed'), ('on_hold','On Hold')] %}
+                    <a href="{{ url_for('tasks.list_tasks', status=s[0], dept=dept_filter) }}"
+                       class="filter-btn {{ 'filter-active' if status_filter == s[0] else '' }}">{{ s[1] }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if session.role != 'staff' %}
+            <div class="filter-group">
+                <label class="filter-label">Department</label>
+                <div class="filter-btns">
+                    <a href="{{ url_for('tasks.list_tasks', status=status_filter, dept='all') }}"
+                       class="filter-btn {{ 'filter-active' if dept_filter == 'all' else '' }}">All</a>
+                    {% for d in departments %}
+                    <a href="{{ url_for('tasks.list_tasks', status=status_filter, dept=d['department']) }}"
+                       class="filter-btn {{ 'filter-active' if dept_filter == d['department'] else '' }}">{{ d['department'] }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </form>
+        {% if session.role in ('manager', 'admin') %}
+        <a href="{{ url_for('tasks.create_task') }}" class="create-btn">+ New Task</a>
+        {% endif %}
+    </div>
+
+    {% if tasks %}
+    <div class="table-card">
+        <div class="table-scroll">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Department</th>
+                    {% if session.role != 'staff' %}<th>Assigned to</th>{% endif %}
+                    <th>Priority</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for t in tasks %}
+            <tr>
+                <td class="task-id">#{{ t['id'] }}</td>
+                <td class="task-title">{{ t['title'] }}</td>
+                <td>{{ t['department'] }}</td>
+                {% if session.role != 'staff' %}
+                <td>{{ t['assigned_name'] or '—' }}</td>
+                {% endif %}
+                <td><span class="priority-badge priority-{{ t['priority'] }}">{{ t['priority'] | capitalize }}</span></td>
+                <td>{{ t['due_date'] or '—' }}</td>
+                <td><span class="status-badge status-{{ t['status'] }}">{{ t['status'] | replace('_',' ') | capitalize }}</span></td>
+                <td><a href="{{ url_for('tasks.view_task', task_id=t['id']) }}" class="view-link">View</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>No tasks match this filter</h3>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
