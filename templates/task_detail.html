@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Task #{{ task['id'] }}{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div class="wrapper">
+        <a href="{{ url_for('tasks.list_tasks') }}" class="back-link">← Back to Tasks</a>
+        <h1 class="page-title">{{ task['title'] }}</h1>
+        <p class="page-sub">Task #{{ task['id'] }} &middot; {{ task['department'] }}</p>
+    </div>
+</div>
+
+<div class="wrapper section-gap">
+    <div class="detail-layout">
+
+        <!-- Left: details + notes -->
+        <div class="detail-main">
+
+            <div class="detail-card">
+                <h2 class="card-heading">Description</h2>
+                <p class="task-description">{{ task['description'] or 'No description provided.' }}</p>
+            </div>
+
+            <!-- Notes -->
+            <div class="detail-card">
+                <h2 class="card-heading">Notes ({{ notes | length }})</h2>
+                {% if notes %}
+                <div class="notes-list">
+                    {% for n in notes %}
+                    <div class="note-item">
+                        <div class="note-meta">
+                            <strong>{{ n['author_name'] }}</strong>
+                            <span class="note-date">{{ n['created_at'][:16] }}</span>
+                        </div>
+                        <p class="note-text">{{ n['note'] }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="muted">No notes yet.</p>
+                {% endif %}
+
+                <form method="post" action="{{ url_for('tasks.add_note', task_id=task['id']) }}" class="note-form">
+                    <textarea name="note" class="text-area" rows="3" placeholder="Add a note or update..."></textarea>
+                    <button type="submit" class="submit-btn">Add Note</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Right: status + meta -->
+        <div class="detail-sidebar">
+
+            <div class="detail-card">
+                <h2 class="card-heading">Status</h2>
+                <div class="current-status">
+                    <span class="status-badge status-{{ task['status'] }} status-lg">
+                        {{ task['status'] | replace('_',' ') | capitalize }}
+                    </span>
+                </div>
+                <form method="post" action="{{ url_for('tasks.update_status', task_id=task['id']) }}" class="status-form">
+                    <select name="status" class="dropdown-input">
+                        {% for s in [('pending','Pending'), ('in_progress','In Progress'), ('completed','Completed'), ('on_hold','On Hold')] %}
+                        <option value="{{ s[0] }}" {{ 'selected' if task['status'] == s[0] }}>{{ s[1] }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="save-btn">Update Status</button>
+                </form>
+            </div>
+
+            <div class="detail-card">
+                <h2 class="card-heading">Details</h2>
+                <dl class="detail-list">
+                    <dt>Priority</dt>
+                    <dd><span class="priority-badge priority-{{ task['priority'] }}">{{ task['priority'] | capitalize }}</span></dd>
+                    <dt>Department</dt>
+                    <dd>{{ task['department'] }}</dd>
+                    <dt>Assigned to</dt>
+                    <dd>{{ task['assigned_name'] or 'Unassigned' }}</dd>
+                    <dt>Created by</dt>
+                    <dd>{{ task['creator_name'] }}</dd>
+                    <dt>Due date</dt>
+                    <dd>{{ task['due_date'] or 'Not set' }}</dd>
+                    <dt>Created</dt>
+                    <dd>{{ task['created_at'][:10] }}</dd>
+                </dl>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
