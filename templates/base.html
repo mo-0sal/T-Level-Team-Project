@@ -12,23 +12,22 @@
 {% if session.user_id %}
 <nav class="top-nav">
     <div class="nav-inner">
+        <!-- Logo -->
         <a class="site-logo" href="{{ url_for('dashboard.index') }}">📋 MJ Limited</a>
-        <button class="navbar-toggler d-lg-none border-0" type="button"
-                data-bs-toggle="collapse" data-bs-target="#nav-links">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="nav-links">
-            <ul class="nav-links-left">
-                <li><a class="nav-link" href="{{ url_for('dashboard.index') }}">Dashboard</a></li>
-                <li><a class="nav-link" href="{{ url_for('tasks.list_tasks') }}">All Tasks</a></li>
-                {% if session.role in ('manager', 'admin') %}
-                <li><a class="nav-link" href="{{ url_for('tasks.create_task') }}">+ New Task</a></li>
-                {% endif %}
-            </ul>
-            <div class="nav-right">
-                <span class="user-info">{{ session.user_name }} &middot; <em>{{ session.role }}</em></span>
-                <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
-            </div>
+
+        <!-- Nav links — always visible -->
+        <ul class="nav-links-left">
+            <li><a class="nav-link" href="{{ url_for('dashboard.index') }}">Dashboard</a></li>
+            <li><a class="nav-link" href="{{ url_for('tasks.list_tasks') }}">All Tasks</a></li>
+            {% if session.role in ('manager', 'admin') %}
+            <li><a class="nav-link" href="{{ url_for('tasks.create_task') }}">+ New Task</a></li>
+            {% endif %}
+        </ul>
+
+        <!-- User info and logout — always visible -->
+        <div class="nav-right">
+            <span class="user-info">{{ session.user_name }} · {{ session.role }}</span>
+            <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
         </div>
     </div>
 </nav>
