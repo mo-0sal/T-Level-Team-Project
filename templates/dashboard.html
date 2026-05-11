@@ -1,1 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div class="wrapper">
+        <h1 class="page-title">
+            {% if session.role == 'staff' %}
+                My Tasks — {{ session.user_name }}
+            {% else %}
+                All Tasks Overview
+            {% endif %}
+        </h1>
+        <p class="page-sub">{{ session.dept }} &middot; {{ session.role | capitalize }}</p>
+    </div>
+</div>
 
+<div class="wrapper section-gap">
+
+    <!-- Stat cards -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-num">{{ pending | length }}</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card stat-blue">
+            <div class="stat-num">{{ in_prog | length }}</div>
+            <div class="stat-label">In Progress</div>
+        </div>
+        <div class="stat-card stat-green">
+            <div class="stat-num">{{ completed | length }}</div>
+            <div class="stat-label">Completed</div>
+        </div>
+        {% if session.role != 'staff' %}
+        <div class="stat-card stat-amber">
+            <div class="stat-num">{{ on_hold | length }}</div>
+            <div class="stat-label">On Hold</div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Task table -->
+    {% set display_tasks = all_tasks if session.role != 'staff' else my_tasks %}
+    {% if display_tasks %}
+    <div class="table-card">
+        <div class="table-header-row">
+            <h2 class="table-heading">
+                {% if session.role == 'staff' %}My Tasks{% else %}All Tasks{% endif %}
+            </h2>
+            {% if session.role in ('manager', 'admin') %}
+            <a href="{{ url_for('tasks.create_task') }}" class="create-btn">+ New Task</a>
+            {% endif %}
+        </div>
+        <div class="table-scroll">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Department</th>
+                    {% if session.role != 'staff' %}<th>Assigned to</th>{% endif %}
+                    <th>Priority</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for t in display_tasks %}
+            <tr>
+                <td class="task-id">#{{ t['id'] }}</td>
+                <td class="task-title">{{ t['title'] }}</td>
+                <td>{{ t['department'] }}</td>
+                {% if session.role != 'staff' %}
+                <td>{{ t['assigned_name'] or '—' }}</td>
+                {% endif %}
+                <td>
+                    <span class="priority-badge priority-{{ t['priority'] }}">
+                        {{ t['priority'] | capitalize }}
+                    </span>
+                </td>
+                <td>{{ t['due_date'] or '—' }}</td>
+                <td>
+                    <span class="status-badge status-{{ t['status'] }}">
+                        {{ t['status'] | replace('_', ' ') | capitalize }}
+                    </span>
+                </td>
+                <td><a href="{{ url_for('tasks.view_task', task_id=t['id']) }}" class="view-link">View</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>No tasks yet</h3>
+        {% if session.role in ('manager', 'admin') %}
+        <p>Create the first task to get started.</p>
+        <a href="{{ url_for('tasks.create_task') }}" class="submit-btn">+ Create Task</a>
+        {% else %}
+        <p>No tasks assigned to you yet.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
