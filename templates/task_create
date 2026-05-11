@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}New Task{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div class="wrapper">
+        <a href="{{ url_for('tasks.list_tasks') }}" class="back-link">← Back to Tasks</a>
+        <h1 class="page-title">Create New Task</h1>
+    </div>
+</div>
+
+<div class="wrapper section-gap">
+    <div class="form-card-wrapper">
+        <div class="form-card">
+            {% if error %}
+            <div class="form-error-msg">{{ error }}</div>
+            {% endif %}
+            <form method="post" novalidate>
+                <div class="form-field">
+                    <label for="title" class="field-label">Task Title *</label>
+                    <input type="text" id="title" name="title" class="text-input" placeholder="e.g. Update Q2 client reports" required>
+                </div>
+                <div class="form-field">
+                    <label for="description" class="field-label">Description</label>
+                    <textarea id="description" name="description" class="text-area" rows="4" placeholder="Describe what needs to be done..."></textarea>
+                </div>
+                <div class="two-col-fields">
+                    <div class="form-field">
+                        <label for="assigned_to" class="field-label">Assign to</label>
+                        <select id="assigned_to" name="assigned_to" class="dropdown-input">
+                            <option value="">— Unassigned —</option>
+                            {% for s in staff %}
+                            <option value="{{ s['id'] }}">{{ s['name'] }} ({{ s['department'] }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="department" class="field-label">Department</label>
+                        <select id="department" name="department" class="dropdown-input">
+                            {% for d in ['Administration', 'Finance', 'HR', 'IT Support', 'Client Services', 'Management', 'General'] %}
+                            <option value="{{ d }}">{{ d }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="two-col-fields">
+                    <div class="form-field">
+                        <label for="priority" class="field-label">Priority</label>
+                        <select id="priority" name="priority" class="dropdown-input">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="due_date" class="field-label">Due Date</label>
+                        <input type="date" id="due_date" name="due_date" class="text-input">
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Create Task</button>
+                    <a href="{{ url_for('tasks.list_tasks') }}" class="cancel-link">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
