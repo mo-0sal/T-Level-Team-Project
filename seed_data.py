@@ -1,127 +1,71 @@
 from werkzeug.security import generate_password_hash
 from database import get_db, init_db
 
-
 def seed():
-    """Insert sample data into all tables."""
-
-    # Ensure tables exist
     init_db()
-
     conn = get_db()
-    cursor = conn.cursor()
+    conn.execute("DELETE FROM task_notes")
+    conn.execute("DELETE FROM tasks")
+    conn.execute("DELETE FROM users")
+    conn.commit()
 
-    existing = cursor.execute("SELECT COUNT(*) FROM users").fetchone()[0]
-    if existing > 0:
-        print("Database already contains data. Skipping seed.")
-        conn.close()
-        return
-
-      users = [
-        ("admin", generate_password_hash("admin123"), "Sarah Mitchell",
-         "s.mitchell@mjlimited.co.uk", "admin", "Management & Strategy"),
-        # Manager users
-        ("m.jones", generate_password_hash("manager123"), "Michael Jones",
-         "m.jones@mjlimited.co.uk", "manager", "Client Services"),
-        ("l.chen", generate_password_hash("manager123"), "Lisa Chen",
-         "l.chen@mjlimited.co.uk", "manager", "Finance"),
-        ("r.patel", generate_password_hash("manager123"), "Raj Patel",
-         "r.patel@mjlimited.co.uk", "manager", "Administration"),
-        # Staff users
-        ("j.smith", generate_password_hash("staff123"), "James Smith",
-         "j.smith@mjlimited.co.uk", "staff", "Client Services"),
-        ("e.williams", generate_password_hash("staff123"), "Emma Williams",
-         "e.williams@mjlimited.co.uk", "staff", "Finance"),
-        ("d.brown", generate_password_hash("staff123"), "David Brown",
-         "d.brown@mjlimited.co.uk", "staff", "Administration"),
-        ("a.taylor", generate_password_hash("staff123"), "Amy Taylor",
-         "a.taylor@mjlimited.co.uk", "staff", "HR"),
+    users = [
+        ("Admin User",    "admin@mj.com",      generate_password_hash("password123"), "admin",   "Management"),
+        ("Sarah Manager", "sarah@mj.com",       generate_password_hash("password123"), "manager", "Administration"),
+        ("Tom Finance",   "tom@mj.com",         generate_password_hash("password123"), "manager", "Finance"),
+        ("Alice Smith",   "alice@mj.com",       generate_password_hash("password123"), "staff",   "Administration"),
+        ("Ben Jones",     "ben@mj.com",         generate_password_hash("password123"), "staff",   "Finance"),
+        ("Claire HR",     "claire@mj.com",      generate_password_hash("password123"), "staff",   "HR"),
+        ("David IT",      "david@mj.com",       generate_password_hash("password123"), "staff",   "IT Support"),
     ]
+    for u in users:
+        conn.execute(
+            "INSERT INTO users (name, email, password_hash, role, department) VALUES (?,?,?,?,?)", u
+        )
+    conn.commit()
 
-    cursor.executemany(
-        "INSERT INTO users (username, password_hash, full_name, email, role, department) "
-        "VALUES (?, ?, ?, ?, ?, ?)",
-        users,
-    )
+    admin = conn.execute("SELECT id FROM users WHERE email='admin@mj.com'").fetchone()
+    sarah = conn.execute("SELECT id FROM users WHERE email='sarah@mj.com'").fetchone()
+    tom   = conn.execute("SELECT id FROM users WHERE email='tom@mj.com'").fetchone()
+    alice = conn.execute("SELECT id FROM users WHERE email='alice@mj.com'").fetchone()
+    ben   = conn.execute("SELECT id FROM users WHERE email='ben@mj.com'").fetchone()
+    claire = conn.execute("SELECT id FROM users WHERE email='claire@mj.com'").fetchone()
 
-    # --- Clients ---
-    clients = [
-        ("Westfield Accountants", "John Westfield", "john@westfieldacc.co.uk",
-         "0121 456 7890", "Accounting", "active",
-         "Long-standing client since 2020. Monthly financial reporting required."),
-        ("GreenLeaf Marketing", "Sophie Green", "sophie@greenleaf.co.uk",
-         "0121 234 5678", "Marketing", "active",
-         "New client. Requires admin support and client coordination."),
-        ("BridgePoint Legal", "Mark Bridge", "mark@bridgepointlegal.co.uk",
-         "0121 987 6543", "Legal", "active",
-         "Requires document management and compliance tracking."),
-        ("TechForward Solutions", "Priya Sharma", "priya@techforward.co.uk",
-         "0121 111 2222", "Technology", "active",
-         "IT consultancy client. Complex project tracking needs."),
-        ("Midlands Property Group", "Tom Harris", "tom@midlandsproperty.co.uk",
-         "0121 333 4444", "Real Estate", "inactive",
-         "Contract paused — to be reviewed Q2 2026."),
-    ]
-
-    cursor.executemany(
-        "INSERT INTO clients (company_name, contact_name, contact_email, "
-        "contact_phone, industry, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        clients,
-    )
-
-    # --- Tasks ---
     tasks = [
-        ("Prepare monthly financial report", "Compile and verify the monthly financial "
-         "report for Westfield Accountants including P&L and balance sheet.",
-         "in_progress", "high", "Finance", 6, 1, "2026-02-14", 3),
-        ("Update client contact database", "Review and update all client contact "
-         "information to ensure records are current and accurate.",
-         "open", "medium", "Administration", 7, None, "2026-02-21", 4),
-        ("Schedule quarterly review meetings", "Arrange Q1 review meetings with all "
-         "active clients. Send calendar invites and prepare agendas.",
-         "open", "medium", "Client Services", 5, None, "2026-02-28", 2),
-        ("Onboard new starter — Marketing Dept", "Complete onboarding checklist for "
-         "new marketing coordinator. Set up accounts, arrange induction.",
-         "in_progress", "high", "HR", 8, None, "2026-02-10", 1),
-        ("Process GreenLeaf invoices", "Process outstanding invoices for GreenLeaf "
-         "Marketing for January services.",
-         "open", "urgent", "Finance", 6, 2, "2026-02-07", 3),
-        ("Prepare compliance documentation", "Gather and organise compliance documents "
-         "for BridgePoint Legal's annual review.",
-         "open", "high", "Client Services", 5, 3, "2026-02-18", 2),
-        ("IT equipment audit", "Conduct inventory check of all IT equipment across "
-         "departments. Record serial numbers and conditions.",
-         "completed", "low", "Administration", 7, None, "2026-01-31", 1),
-        ("Draft staff training plan", "Create a training needs analysis and development "
-         "plan for Q1-Q2 2026 across all departments.",
-         "open", "medium", "HR", 8, None, "2026-03-01", 1),
-        ("TechForward project status update", "Compile progress report on all active "
-         "workstreams for TechForward Solutions.",
-         "in_progress", "high", "Client Services", 2, 4, "2026-02-12", 2),
-        ("Archive inactive client files", "Move Midlands Property Group files to "
-         "archive storage following contract pause.",
-         "open", "low", "Administration", 7, 5, "2026-03-15", 4),
+        ("Update client contact records",  "Review and update all client contact details in the shared folder", alice['id'], sarah['id'],  "Administration", "high",   "in_progress", "2025-06-01"),
+        ("Prepare Q2 invoices",            "Generate and send Q2 invoices to all active clients",               ben['id'],   tom['id'],    "Finance",        "high",   "pending",     "2025-05-30"),
+        ("Staff onboarding documents",     "Prepare welcome pack and contracts for two new starters",           claire['id'],sarah['id'],  "HR",             "medium", "pending",     "2025-06-10"),
+        ("Monthly payroll run",            "Process May payroll for all 40 employees",                         ben['id'],   tom['id'],    "Finance",        "high",   "pending",     "2025-05-28"),
+        ("Book meeting room for Q2 review","Reserve the main conference room for the Q2 review meeting",        alice['id'], sarah['id'],  "Administration", "low",    "completed",   "2025-05-20"),
+        ("IT equipment audit",             "Log and tag all IT equipment across all departments",               None,        admin['id'],  "IT Support",     "medium", "pending",     "2025-06-15"),
+        ("Update employee handbook",       "Revise the handbook with updated remote working policy",            claire['id'],admin['id'],  "HR",             "medium", "on_hold",     "2025-06-20"),
+        ("Client report — TechCo Ltd",    "Produce monthly progress report for TechCo Ltd",                    alice['id'], sarah['id'],  "Administration", "high",   "in_progress", "2025-05-29"),
     ]
+    for t in tasks:
+        conn.execute(
+            """INSERT INTO tasks (title, description, assigned_to, created_by, department, priority, status, due_date)
+               VALUES (?,?,?,?,?,?,?,?)""", t
+        )
+    conn.commit()
 
-    cursor.executemany(
-        "INSERT INTO tasks (title, description, status, priority, department, "
-        "assigned_to, client_id, due_date, created_by) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        tasks,
-    )
+    task1 = conn.execute("SELECT id FROM tasks WHERE title='Update client contact records'").fetchone()
+    task2 = conn.execute("SELECT id FROM tasks WHERE title='Prepare Q2 invoices'").fetchone()
 
+    conn.execute("INSERT INTO task_notes (task_id, author_id, note) VALUES (?,?,?)",
+                 (task1['id'], alice['id'], "Started reviewing records — about 30% done so far."))
+    conn.execute("INSERT INTO task_notes (task_id, author_id, note) VALUES (?,?,?)",
+                 (task1['id'], sarah['id'], "Please prioritise the West Midlands clients first."))
+    conn.execute("INSERT INTO task_notes (task_id, author_id, note) VALUES (?,?,?)",
+                 (task2['id'], ben['id'], "Waiting on invoice template update from Tom before I can proceed."))
     conn.commit()
     conn.close()
-    print("✅ Database seeded successfully with sample data.")
-    print("   Users: 8 (1 admin, 3 managers, 4 staff)")
-    print("   Clients: 5 (4 active, 1 inactive)")
-    print("   Tasks: 10 (various statuses and priorities)")
-    print()
-    print("   Login credentials:")
-    print("   Admin:   admin / admin123")
-    print("   Manager: m.jones / manager123")
-    print("   Staff:   j.smith / staff123")
 
+    print("Database seeded!")
+    print("Admin:   admin@mj.com   / password123")
+    print("Manager: sarah@mj.com   / password123")
+    print("Manager: tom@mj.com     / password123")
+    print("Staff:   alice@mj.com   / password123")
+    print("Staff:   ben@mj.com     / password123")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     seed()
