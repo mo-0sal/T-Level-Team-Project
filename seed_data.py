@@ -1,16 +1,3 @@
-"""
-Seed Data Script — Populates the database with realistic sample data.
-
-Run this once after setting up the project:
-    python seed_data.py
-
-This creates sample users, clients, and tasks so the application
-has meaningful data to display from the start. All passwords are
-hashed using Werkzeug's security functions — never stored in plain text.
-
-The seed data reflects MJ Limited's department structure from the fact file.
-"""
-
 from werkzeug.security import generate_password_hash
 from database import get_db, init_db
 
@@ -24,18 +11,13 @@ def seed():
     conn = get_db()
     cursor = conn.cursor()
 
-    # Check if data already exists (don't duplicate on re-run)
     existing = cursor.execute("SELECT COUNT(*) FROM users").fetchone()[0]
     if existing > 0:
         print("Database already contains data. Skipping seed.")
         conn.close()
         return
 
-    # --- Users ---
-    # Passwords are hashed — the plain text is shown here only for reference
-    # In production, users would set their own passwords
-    users = [
-        # Admin users (IT & Management)
+      users = [
         ("admin", generate_password_hash("admin123"), "Sarah Mitchell",
          "s.mitchell@mjlimited.co.uk", "admin", "Management & Strategy"),
         # Manager users
